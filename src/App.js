@@ -18,58 +18,58 @@ function App() {
         <Router>
           
             
-            <div class="options">
-        <label class="option">
+            <div className="options">
+        <label className="option">
           <input type="radio" name="company" value="apple" checked />
-          <div class="option-content">
-            <h1 class="animated bounceIn">
-              <i class="ion-social-apple-outline"></i>
+          <div className="option-content">
+            <h1 className="animated bounceIn">
+              <i className="ion-social-apple-outline"></i>
             </h1>
             <h4><Link to='/shiftCipher'>Shift Cipher</Link></h4>
             <h4>
-              <i class="ion-android-radio-button-on"></i>
+              <i className="ion-android-radio-button-on"></i>
             </h4>
           </div>
-          <div class="on-checked"></div>
+          <div className="on-checked"></div>
         </label>
-        <label class="option">
+        <label className="option">
           <input type="radio" name="company" value="facebook" />
-          <div class="option-content">
-            <h1 class="animated bounceIn">
-              <i class="ion-social-facebook-outline"></i>
+          <div className="option-content">
+            <h1 className="animated bounceIn">
+              <i className="ion-social-facebook-outline"></i>
             </h1>
             <h4><Link to='/substitutionCipher'>Substitution Cipher</Link></h4>
             <h4>
-              <i class="ion-android-radio-button-on"></i>
+              <i className="ion-android-radio-button-on"></i>
             </h4>
           </div>
-          <div class="on-checked"></div>
+          <div className="on-checked"></div>
         </label>
-        <label class="option">
+        <label className="option">
           <input type="checkbox" name="social" value="tumblr" checked />
-          <div class="option-content">
-            <h1 class="animated bounceIn">
-              <i class="ion-social-tumblr-outline"></i>
+          <div className="option-content">
+            <h1 className="animated bounceIn">
+              <i className="ion-social-tumblr-outline"></i>
             </h1>
             <h4> <Link to='/vigenereCipher'>Vigenere Cipher</Link></h4>
             <h4>
-              <i class="ion-android-checkbox-outline"></i>
+              <i className="ion-android-checkbox-outline"></i>
             </h4>
           </div>
-          <div class="on-checked"></div>
+          <div className="on-checked"></div>
         </label>
-        <label class="option">
+        <label className="option">
           <input type="checkbox" name="social" value="twitter" />
-          <div class="option-content">
-            <h1 class="animated bounceIn">
-              <i class="ion-social-twitter-outline"></i>
+          <div className="option-content">
+            <h1 className="animated bounceIn">
+              <i className="ion-social-twitter-outline"></i>
             </h1>
             <h4>            <Link to='/hillCipher'>Hill Cipher</Link></h4>
             <h4>
-              <i class="ion-android-checkbox-outline"></i>
+              <i className="ion-android-checkbox-outline"></i>
             </h4>
           </div>
-          <div class="on-checked"></div>
+          <div className="on-checked"></div>
         </label>
       </div>
           <Routes>
