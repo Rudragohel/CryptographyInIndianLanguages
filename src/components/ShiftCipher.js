@@ -1,9 +1,8 @@
 import { characterIs } from '../chart';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 export const ShiftCipher = () => {
-    const {register, handleSubmit, formState: { errors }} = useForm();
+
     const [inputText,GetText] = useState("");
     const [vList,SetvList] = useState([]);
     const [sList,SetSList] = useState([]);

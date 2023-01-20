@@ -1,10 +1,15 @@
 #headb {
-    background-color: #282c34;
-    color: white;
-    padding: 20px;
-    font-family: Arial;
-    text-align: center;
-  }
+  background-color: #282c34;
+  color: white;
+  font-family: Arial;
+  font-size: 0.6rem;
+  height: 20vh;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #navb {
   background-color: #696e78;
   color: white;
@@ -12,4 +17,3 @@
   font-family: Arial;
   text-align: center;
 }
-
