@@ -10,10 +10,12 @@ function App() {
   return (
     <div className="App">
       <Headbar />
-      <Navbar />
+
       <div>
         <Router>
-          <Link to="/shiftCipher">Shift Cipher</Link>
+          <div id ="navb">
+            <Link to='/shiftCipher'>Shift Cipher</Link>
+          </div>
           <Routes>
             <Route path='/shiftCipher' element={<ShiftCipher />} />
           </Routes>
