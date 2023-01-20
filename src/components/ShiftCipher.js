@@ -4,13 +4,13 @@ import { useState } from 'react';
 export const ShiftCipher = () => {
     
     const [inputText,GetText] = useState("");
-    const [vList,SetvList] = useState([]);
-    const [sList,SetSList] = useState([]);
     const [validInput,SetValidInput] = useState(true);
     const [OutputText,SetOutputText] = useState("")
     var prevchar = "";
     var prevvyanjan = false;
     var finalOutput = "";
+    var vList =[];
+    var sList =[];
     const HandleInputFunc = (event) => {
         GetText(event.target.value);
     }
@@ -89,16 +89,27 @@ export const ShiftCipher = () => {
         console.log("prevvyanjan",prevvyanjan);
         
         });
-    
+        
         console.log("tempvList",tempvList);
         console.log("tempsList",tempsList);
-        
+        vList = tempvList;
+        sList = tempsList;
+        console.log("vList",vList);
+        console.log("sList",sList);
         for (let i = 0; i < tempvList.length; i++) {
         console.log(tempvList[i]+tempsList[i]);
         finalOutput = finalOutput + tempvList[i]+tempsList[i];
         }
         console.log("finalOutput",finalOutput);
         SetOutputText(finalOutput);
+
+        
+    }
+
+    const encrypt = () => {
+        CreatePairList();
+        console.log("In Encrypt Function");
+        console.log("OutputText",OutputText);
     }
 
     return (
@@ -112,9 +123,9 @@ export const ShiftCipher = () => {
         {validInput ? "" : "Invalid Input"}
       </div>
       <div>
-        <input placeholder='Enter Key a'/>
-        <input placeholder='Enter Key b'/>
-        <button>Generate</button>
+        <input type="number" placeholder='Enter Key a'/>
+        <input type="number" placeholder='Enter Key b'/>
+        <button onClick={encrypt}>Generate</button>
       </div>
       <div>{OutputText}</div>
         </div>
