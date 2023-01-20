@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Rudragohel/CryptographyInIndianLanguages/static/css/main.4a3758e1.css",
+    "main.js": "/Rudragohel/CryptographyInIndianLanguages/static/js/main.c0d89af5.js",
+    "index.html": "/Rudragohel/CryptographyInIndianLanguages/index.html",
+    "main.4a3758e1.css.map": "/Rudragohel/CryptographyInIndianLanguages/static/css/main.4a3758e1.css.map",
+    "main.c0d89af5.js.map": "/Rudragohel/CryptographyInIndianLanguages/static/js/main.c0d89af5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4a3758e1.css",
+    "static/js/main.c0d89af5.js"
+  ]
+}
