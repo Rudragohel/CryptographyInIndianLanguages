@@ -116,18 +116,18 @@ export const ShiftCipher = () => {
         <div>
             <h1>Shifter Cipher</h1>
             <div>
-        <input type="text" onChange={HandleInputFunc}/>
-        <button onClick={CreatePairList}>Convert</button>
-      </div>
-      <div>
-        {validInput ? "" : "Invalid Input"}
-      </div>
-      <div>
-        <input type="number" placeholder='Enter Key a'/>
-        <input type="number" placeholder='Enter Key b'/>
-        <button onClick={encrypt}>Generate</button>
-      </div>
-      <div>{OutputText}</div>
+                <input type="text" onChange={HandleInputFunc}/>
+                <button onClick={CreatePairList}>Convert</button>
+            </div>
+            <div>
+                {validInput ? "" : "Invalid Input"}
+            </div>
+            <div>
+                <input type="number" placeholder='Enter Key a'/>
+                <input type="number" placeholder='Enter Key b'/>
+                <button onClick={encrypt}>Generate</button>
+            </div>
+            <div>{OutputText}</div>
         </div>
     )
 }

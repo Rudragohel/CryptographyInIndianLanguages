@@ -12,12 +12,6 @@ body {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -163,7 +157,7 @@ p {
       .options > .option > input[type="checkbox"]:hover ~ .option-content
       /* .options > .option > input[type="checkbox"]:checked ~ .option-content */ {
   width: 100%;
-  transform: scale(1.3, 1.3);
+  transform: scale(1.3, 1.3); 
 }
 /* .options > .option > input[type="radio"]:checked ~ .on-checked,
       .options > .option > input[type="checkbox"]:checked ~ .on-checked {

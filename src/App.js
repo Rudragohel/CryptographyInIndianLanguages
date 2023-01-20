@@ -10,8 +10,12 @@ function App() {
   return (
     <div className="App">
       <Headbar />
-      {/* <Navbar /> */}
 
+      <Router>
+      <Routes>
+        <Route path="/shiftCipher" element={<ShiftCipher />} />
+      </Routes>
+      
       <div class="options">
         <label class="option">
           <input type="radio" name="company" value="apple" checked />
@@ -32,7 +36,7 @@ function App() {
             <h1 class="animated bounceIn">
               <i class="ion-social-facebook-outline"></i>
             </h1>
-            <h4>FACEBOOK</h4>
+            <h4><Link to="/shiftCipher">FACEBOOK</Link></h4>
             <h4>
               <i class="ion-android-radio-button-on"></i>
             </h4>
@@ -65,7 +69,9 @@ function App() {
           </div>
           <div class="on-checked"></div>
         </label>
+      
       </div>
+      </Router>
 
       {/* <div>
         <Router>
