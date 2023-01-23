@@ -1,39 +1,109 @@
-body {
-  padding: 0;
-  margin: 0;
-}
-
-.App {
+body,
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  min-height: inherit;
+  width: 100%;
+  max-width: 100%;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #7474bf 20%, #348ac7 80%);
+  color: #fff;
   text-align: center;
+  font-family: "Roboto Mono", monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  padding: 0px;
+  margin: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-size: 6em;
+  font-weight: 700 !important;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.02), 2px 2px rgba(0, 0, 0, 0.02),
+    3px 3px rgba(0, 0, 0, 0.02), 4px 4px rgba(0, 0, 0, 0.02),
+    0.125rem 0.125rem rgba(0, 0, 0, 0.02), 6px 6px rgba(0, 0, 0, 0.02),
+    7px 7px rgba(0, 0, 0, 0.02), 8px 8px rgba(0, 0, 0, 0.02),
+    9px 9px rgba(0, 0, 0, 0.02), 0.3125rem 0.3125rem rgba(0, 0, 0, 0.02),
+    11px 11px rgba(0, 0, 0, 0.02), 12px 12px rgba(0, 0, 0, 0.02),
+    13px 13px rgba(0, 0, 0, 0.02), 14px 14px rgba(0, 0, 0, 0.02),
+    0.625rem 0.625rem rgba(0, 0, 0, 0.02), 16px 16px rgba(0, 0, 0, 0.02),
+    17px 17px rgba(0, 0, 0, 0.02), 18px 18px rgba(0, 0, 0, 0.02),
+    19px 19px rgba(0, 0, 0, 0.02), 1.25rem 1.25rem rgba(0, 0, 0, 0.02);
 }
 
-.App-link {
-  color: #61dafb;
+h4,
+h5 {
+  margin-top: 1em;
+  letter-spacing: 3px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 100%;
+  font-weight: normal;
+}
+
+p {
+  font-size: 0.875em;
+  margin-bottom: 1em;
+  line-height: 160%;
+}
+
+.options {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  height: 99vh;
+  table-layout: fixed;
+}
+.options > .option {
+  position: relative;
+  overflow: hidden;
+  display: table-cell;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+  transition-property: background;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  transition-duration: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.options > .option > input[type="radio"],
+.options > .option > input[type="checkbox"] {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.options > .option:hover .option-content {
+  width: 100%;
+  transform: scale(1.15, 1.15);
+}
+.options > .option > .option-content {
+  position: relative;
+  z-index: 1;
+  cursor: pointer !important;
+  height: inherit;
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, background, padding, transform;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  transition-duration: 0.3s;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 1.6rem;
 }
 
 body,
