@@ -10,7 +10,7 @@ html {
   font-size: 1rem;
   letter-spacing: 0.5px;
   background: linear-gradient(135deg, #7474bf 20%, #348ac7 80%);
-  color: #fff;
+  color: rgb(0, 0, 0);
   text-align: center;
   font-family: "Roboto Mono", monospace;
 }
@@ -113,6 +113,8 @@ p {
   height: 100%;
   z-index: 2;
   display: flex;
+  font-weight: bolder;
+  font-size: large;
   
 }
 
@@ -166,8 +168,19 @@ p {
 
 .ActionButton {
   margin-left: 5%;
+  height: 20px;
+  width: 60px;
 }
 
 .InputField {
   margin-left: 2%;
+}
+
+#LockLogo {
+  position: absolute;
+  top: -100px;
+  left: 39%;
+  width: 300px;
+  height: 300px;
+  opacity: 0.1;
 }

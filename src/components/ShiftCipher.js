@@ -4,11 +4,15 @@ import { NavContext } from '../App';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { unmountComponentAtNode } from 'react-dom';
+import Img from './Lock2.png';
+
 export const ShiftCipher = () => {
 
     const { navPos, setNavPos, HomeStyle, PageStyle } = useContext(NavContext);
-    setNavPos(PageStyle);
+
     useEffect(() => {
+        setNavPos(PageStyle);
+
         return () => {
             setNavPos(HomeStyle);
         }
@@ -299,7 +303,7 @@ export const ShiftCipher = () => {
                 <label>Enter Plain text: </label>
                 <input type="text" onChange={HandleInputFunc}/>
             </div>
-            
+            <img src={Img} alt="logo" id="LockLogo"/>
             <div id="inputKey">
                 <label> Enter keys:</label>
                 <input type="number" placeholder='Key a' onChange={HandleInputKeya} className="InputField"/>
