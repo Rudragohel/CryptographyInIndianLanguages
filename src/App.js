@@ -1,5 +1,4 @@
 import './App.css';
-import {characterIs } from './chart.js';
 import { useState } from 'react';
 import { Headbar } from './components/Heading';
 import { Navbar } from './components/navigation';

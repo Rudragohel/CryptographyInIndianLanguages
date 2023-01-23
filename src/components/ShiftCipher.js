@@ -1,9 +1,11 @@
-import { characterIs } from '../chart';
+import { characterIs, VyanjanLetterToIndex as Vlti, SwarLetterToIndex as Slti, VyanjanIndexToLetter as Vitl, SwarIndexToLetter as Sitl, SwarMatraToLetter as Smtl, SwarLetterToMatra as Sltm } from '../chart';
 import { useState } from 'react';
 
 export const ShiftCipher = () => {
 
     const [inputText,GetText] = useState("");
+    const [Keya,SetKeya] = useState(0);
+    const [Keyb,SetKeyb] = useState(0);
     const [vList,SetvList] = useState([]);
     const [sList,SetSList] = useState([]);
     const [validInput,SetValidInput] = useState(true);
@@ -11,111 +13,293 @@ export const ShiftCipher = () => {
     var prevchar = "";
     var prevvyanjan = false;
     var finalOutput = "";
+    const NumberofVyanjan = 34;
+    const NumberofSwar = 11;
+    
     const HandleInputFunc = (event) => {
         GetText(event.target.value);
     }
 
-    const CreatePairList = () => {
+    const HandleInputKeya = (event) => {
+        SetKeya(event.target.value);
+    }
 
-        console.log(inputText);
-        console.log("Length",inputText.length);
+    const HandleInputKeyb = (event) => {
+        SetKeyb(event.target.value);
+    }
+
+    const encrypt = () => {
+
+        // console.log(inputText);
+        // console.log("Length",inputText.length);
         var tempvList=[];
         var tempsList=[];
         var count = 0;
         inputText.split('').forEach((char) => {
         console.log(char);
         count++;
-        console.log("Count",count);
+        // console.log("Count",count);
         if (characterIs[char] === 'vyanjan') {
-            console.log("vyanjan");
+            // console.log("vyanjan");
             if(prevvyanjan === true){
             
-            console.log("Insert: to vList",char,);
+            // console.log("Insert: to vList",char,);
             tempvList.push(prevchar);
 
-            console.log("Insert: to sList",'/u0905');
+            // console.log("Insert: to sList",'/u0905');
             tempsList.push('\u0905');
 
             }
             if(count === inputText.length && prevvyanjan === false){
-            console.log("Last digit anomaly detected");
-            console.log("Insert: to vList",char);
+            // console.log("Last digit anomaly detected");
+            // console.log("Insert: to vList",char);
             tempvList.push(char);
     
-            console.log("Insert: to sList",'/u0905');
+            // console.log("Insert: to sList",'/u0905');
             tempsList.push('\u0905');
             }
             prevvyanjan = true;
         }
-        else{
-            console.log("swar");
+        else if(characterIs[char] === 'swarMatra'){
+            // console.log("swar");
 
             if(prevvyanjan === true){
             
-            console.log("Insert: to vList",prevchar);
+            // console.log("Insert: to vList",prevchar);
             tempvList.push(prevchar);
 
-            if(characterIs[char] === 'swar'){
-                console.log("Insert: to sList",char);
+            if(characterIs[char] === 'swarMatra'){
+                // console.log("Insert: to sList",char);
                 tempsList.push(char);
             }
             else{
-                console.log("Insert: to sList",'\u0905');
+                // console.log("Insert: to sList",'\u0905');
                 tempsList.push('\u0905');    
             }
 
             }
             else{
             SetValidInput(false);
-            console.log("Insert: to vList",char);
+            // console.log("Insert: to vList",char);
             tempvList.push(char);
     
-            console.log("Insert: to sList",'/u0905');
+            // console.log("Insert: to sList",'/u0905');
             tempsList.push('\u0905');
             return;
             }
             if(count === inputText.length && prevvyanjan === false){
-            console.log("Last digit anomaly detected");
-            console.log("Insert: to vList",char);
+            // console.log("Last digit anomaly detected");
+            // console.log("Insert: to vList",char);
             tempvList.push(char);
     
-            console.log("Insert: to sList",'/u0905');
+            // console.log("Insert: to sList",'/u0905');
             tempsList.push('\u0905');
             }
             prevvyanjan = false;
         }
+        else{   
+            console.log("Swar Detected");
+            tempvList.push('\u0905');
+            tempsList.push(Sltm[char]);
+        }
         
         prevchar = char;
-        console.log("prevvyanjan",prevvyanjan);
+        // console.log("prevvyanjan",prevvyanjan);
         
         });
     
-        console.log("tempvList",tempvList);
-        console.log("tempsList",tempsList);
+        // console.log("tempvList",tempvList);
+        // console.log("tempsList",tempsList);
         
         for (let i = 0; i < tempvList.length; i++) {
-        console.log(tempvList[i]+tempsList[i]);
+        // console.log(tempvList[i]+tempsList[i]);
         finalOutput = finalOutput + tempvList[i]+tempsList[i];
         }
-        console.log("finalOutput",finalOutput);
+        // console.log("finalOutput",finalOutput);
         SetOutputText(finalOutput);
+
+        console.log("tempvList",tempvList);
+        console.log("tempsList",tempsList);
+        console.log("Keya",Keya);
+        console.log("Keyb",Keyb);
+
+        for (let i = 0; i < tempvList.length; i++) {
+            // console.log("Traanformed  to: ",Vlti[tempvList[i]]+Number(Keya));
+            tempvList[i] = Vitl[(Vlti[tempvList[i]]+Number(Keya))%NumberofVyanjan];
+        }
+
+        for (let i = 0; i < tempsList.length; i++) {
+            tempsList[i] = Sitl[(Slti[tempsList[i]]+Number(Keyb))%NumberofSwar];
+        }
+
+        console.log("tempvList",tempvList);
+        console.log("tempsList",tempsList);
+
+        let encryptedString = "";
+        
+
+        for (let i = 0; i < tempvList.length; i++) {
+            if(tempvList[i] === '\u0905'){
+                encryptedString = encryptedString + Smtl[tempsList[i]];
+            }
+            else if(tempsList[i] === '\u0905'){
+                encryptedString = encryptedString + tempvList[i];
+            }
+            else{
+                encryptedString = encryptedString + tempvList[i]+tempsList[i];
+            }
+        }
+
+        console.log("encryptedString",encryptedString);
+        
+        SetOutputText(encryptedString);
+    }
+
+    const decrypt = () => {
+        console.log(inputText);
+        console.log("Keya",Keya);
+        console.log("Keyb",Keyb);
+        // console.log("Length",inputText.length);
+        var tempvList=[];
+        var tempsList=[];
+        var count = 0;
+        inputText.split('').forEach((char) => {
+        console.log(char);
+        count++;
+        // console.log("Count",count);
+        if (characterIs[char] === 'vyanjan') {
+            // console.log("vyanjan");
+            if(prevvyanjan === true){
+            
+            // console.log("Insert: to vList",char,);
+            tempvList.push(prevchar);
+
+            // console.log("Insert: to sList",'/u0905');
+            tempsList.push('\u0905');
+
+            }
+            if(count === inputText.length && prevvyanjan === false){
+            // console.log("Last digit anomaly detected");
+            // console.log("Insert: to vList",char);
+            tempvList.push(char);
+    
+            // console.log("Insert: to sList",'/u0905');
+            tempsList.push('\u0905');
+            }
+            prevvyanjan = true;
+        }
+        else if(characterIs[char] === 'swarMatra'){
+            // console.log("swar");
+
+            if(prevvyanjan === true){
+            
+            // console.log("Insert: to vList",prevchar);
+            tempvList.push(prevchar);
+
+            if(characterIs[char] === 'swarMatra'){
+                // console.log("Insert: to sList",char);
+                tempsList.push(char);
+            }
+            else{
+                // console.log("Insert: to sList",'\u0905');
+                tempsList.push('\u0905');    
+            }
+
+            }
+            else{
+            SetValidInput(false);
+            // console.log("Insert: to vList",char);
+            tempvList.push(char);
+    
+            // console.log("Insert: to sList",'/u0905');
+            tempsList.push('\u0905');
+            return;
+            }
+            if(count === inputText.length && prevvyanjan === false){
+            // console.log("Last digit anomaly detected");
+            // console.log("Insert: to vList",char);
+            tempvList.push(char);
+    
+            // console.log("Insert: to sList",'/u0905');
+            tempsList.push('\u0905');
+            }
+            prevvyanjan = false;
+        }
+        else{
+            console.log("Swar Detected");
+            tempvList.push('\u0905');
+            tempsList.push(Sltm[char]);
+        }
+        
+        prevchar = char;
+        // console.log("prevvyanjan",prevvyanjan);
+        
+        });
+    
+        // console.log("tempvList",tempvList);
+        // console.log("tempsList",tempsList);
+        
+        for (let i = 0; i < tempvList.length; i++) {
+        // console.log(tempvList[i]+tempsList[i]);
+        finalOutput = finalOutput + tempvList[i]+tempsList[i];
+        }
+        // console.log("finalOutput",finalOutput);
+        SetOutputText(finalOutput);
+
+        console.log("tempvList",tempvList);
+        console.log("tempsList",tempsList);
+        console.log("Keya",Keya);
+        console.log("Keyb",Keyb);
+
+        for (let i = 0; i < tempvList.length; i++) {
+            console.log("Traanformed  to: ",Vlti[tempvList[i]]+Number(Keya));
+            tempvList[i] = Vitl[(Vlti[tempvList[i]]+NumberofVyanjan -Number(Keya))%NumberofVyanjan];
+        }
+
+        for (let i = 0; i < tempsList.length; i++) {
+            tempsList[i] = Sitl[(Slti[tempsList[i]]+NumberofSwar-Number(Keyb))%NumberofSwar];
+        }
+
+        console.log("tempvList",tempvList);
+        console.log("tempsList",tempsList);
+
+        let encryptedString = "";
+        
+
+        for (let i = 0; i < tempvList.length; i++) {
+            if(tempvList[i] === '\u0905'){
+                encryptedString = encryptedString + Smtl[tempsList[i]];
+            }
+            else if(tempsList[i] === '\u0905'){
+                encryptedString = encryptedString + tempvList[i];
+            }
+            else{
+                encryptedString = encryptedString + tempvList[i]+tempsList[i];
+            }
+        }
+
+        console.log("encryptedString",encryptedString);
+        
+        SetOutputText(encryptedString);
     }
 
     return (
         <div>
         <div>
+            <label>Enter Plain text</label>
             <input type="text" onChange={HandleInputFunc}/>
-            <button onClick={CreatePairList}>Convert</button>
         </div>
         <div>
             {validInput ? "" : "Invalid Input"}
         </div>
         <div>
-            <input placeholder='Enter Key a'/>
-            <input placeholder='Enter Key b'/>
-            <button>Generate</button>
+            <label> Enter keys</label>
+            <input type="number" placeholder='Key a' onChange={HandleInputKeya}/>
+            <input type="number" placeholder='Key b' onChange={HandleInputKeyb}/>
+            <button onClick={encrypt}>Encrypt</button>
+            <button onClick={decrypt}>Decrypt</button>
         </div>
-        <div>{OutputText}</div>
+        <div>Cipher Text: {OutputText}</div>
         </div>
     )
 }
