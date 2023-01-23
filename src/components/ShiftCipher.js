@@ -1,8 +1,18 @@
 import { characterIs, VyanjanLetterToIndex as Vlti, SwarLetterToIndex as Slti, VyanjanIndexToLetter as Vitl, SwarIndexToLetter as Sitl, SwarMatraToLetter as Smtl, SwarLetterToMatra as Sltm } from '../chart';
 import { useState } from 'react';
-
+import { NavContext } from '../App';
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import { unmountComponentAtNode } from 'react-dom';
 export const ShiftCipher = () => {
 
+    const { navPos, setNavPos, HomeStyle, PageStyle } = useContext(NavContext);
+    setNavPos(PageStyle);
+    useEffect(() => {
+        return () => {
+            setNavPos(HomeStyle);
+        }
+    }, [])
     const [inputText,GetText] = useState("");
     const [Keya,SetKeya] = useState(0);
     const [Keyb,SetKeyb] = useState(0);
@@ -284,22 +294,22 @@ export const ShiftCipher = () => {
     }
 
     return (
-        <div>
-        <div>
-            <label>Enter Plain text</label>
-            <input type="text" onChange={HandleInputFunc}/>
-        </div>
-        <div>
-            {validInput ? "" : "Invalid Input"}
-        </div>
-        <div>
-            <label> Enter keys</label>
-            <input type="number" placeholder='Key a' onChange={HandleInputKeya}/>
-            <input type="number" placeholder='Key b' onChange={HandleInputKeyb}/>
-            <button onClick={encrypt}>Encrypt</button>
-            <button onClick={decrypt}>Decrypt</button>
-        </div>
-        <div>Cipher Text: {OutputText}</div>
+        <div id="inputForm">
+            <div id="inputPlainText">
+                <label>Enter Plain text: </label>
+                <input type="text" onChange={HandleInputFunc}/>
+            </div>
+            
+            <div id="inputKey">
+                <label> Enter keys:</label>
+                <input type="number" placeholder='Key a' onChange={HandleInputKeya} className="InputField"/>
+                <input type="number" placeholder='Key b' onChange={HandleInputKeyb} className="InputField"/>
+            </div>
+            <div id="inputButtons">
+                <button onClick={encrypt} className="ActionButton">Encrypt</button>
+                <button onClick={decrypt} className="ActionButton">Decrypt</button>
+            </div>
+            <div id="outputText">Cipher Text: {OutputText}</div>
         </div>
     )
 }
