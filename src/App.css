@@ -184,3 +184,35 @@ p {
   height: 300px;
   opacity: 0.1;
 }
+
+.PermutationInput {
+  position: relative;
+  display: inline-block
+}
+
+#Permutation_inputdiv{
+  position: absolute;
+  top: 700%;
+  display: inline-flex;
+  padding: 0 5em;
+  height: 200%;
+}
+
+#vyanOptionInput {
+  
+  width: 20px;
+
+}
+
+
+
+input::-webkit-calendar-picker-indicator {
+  width: 0px;
+  visibility: hidden; 
+
+}
+
+#vyanOptionInput {
+ 
+  
+}

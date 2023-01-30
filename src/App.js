@@ -5,7 +5,7 @@ import { Headbar } from "./components/Heading";
 import { Navbar } from "./components/navigation";
 import { ShiftCipher } from "./components/ShiftCipher";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import { SubstitutionCipher } from './components/substitutionCipher';
+import { SubstitutionCipher } from './components/substitutionCipher';
 import { HillCipher } from "./components/HillCipher";
 import { VigenereCipher } from "./components/VigenereCipher";
 import { useEffect, createContext } from "react";
@@ -61,7 +61,7 @@ function App() {
           </div>
           <Routes>
             <Route path="/shiftCipher" element={<ShiftCipher />} />
-            {/* <Route path='/substitutionCipher' element={<SubstitutionCipher />} /> */}
+            <Route path='/substitutionCipher' element={<SubstitutionCipher />} />
             <Route path="/hillCipher" element={<HillCipher />} />
             <Route path="/vigenereCipher" element={<VigenereCipher />} />
           </Routes>
